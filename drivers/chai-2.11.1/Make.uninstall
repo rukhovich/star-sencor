@@ -1,0 +1,10 @@
+uninstall:
+	if [ -L /lib/libchai.so ]; then rm -f /lib/libchai.so; fi
+	/sbin/ldconfig
+	if [ -L /bin/canmon ]; then rm -f /bin/canmon; fi
+	if [ -L /bin/chaitest ]; then rm -f /bin/chaitest; fi
+	if [ -x /sbin/chkconfig ]; then /sbin/chkconfig --level 2345 chai off; fi
+	if [ -x /usr/sbin/update-rc.d ]; then update-rc.d -f chai remove; fi
+	if [ -L /etc/init.d/chai ]; then rm -f /etc/init.d/chai; fi
+	if [ -L /bin/chai ]; then rm -f /bin/chai; fi
+

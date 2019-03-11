@@ -1,0 +1,16 @@
+install:
+	rm -f /lib/libchai.so
+	ln -s `echo \`pwd\`/lib/libchai.so` /lib/libchai.so
+	/sbin/ldconfig
+	rm -f /bin/canmon
+	ln -s `echo \`pwd\`/bin/canmon` /bin/canmon
+	rm -f /bin/chai
+	ln -s `echo \`pwd\`/bin/chai` /bin/chai
+	rm -f /bin/chaitest
+	ln -s `echo \`pwd\`/bin/chaitest` /bin/chaitest
+	/bin/sh ./makedevs
+	if [ -d /etc/init.d ]; then rm -f /etc/init.d/chai; ln -s /bin/chai /etc/init.d/chai; fi
+	if [ -x /sbin/chkconfig ]; then /sbin/chkconfig --level 2345 chai on; fi
+	if [ -x /usr/sbin/update-rc.d ]; then /usr/sbin/update-rc.d chai defaults; fi
+
+

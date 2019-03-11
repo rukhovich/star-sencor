@@ -1,1 +1,1 @@
-# star-sencor
+# star-sensor

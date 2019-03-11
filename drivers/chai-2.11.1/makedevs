@@ -1,0 +1,25 @@
+#!/bin/sh
+
+if [ ! -c /dev/unican ]; then
+    mknod /dev/unican c 122 0;
+  if [ $? -ne 0 ] ;then
+    echo "creating /dev/unican failed"
+    exit 1
+  fi
+  chmod 666 /dev/unican;
+fi
+
+for i in 0 1 2 3 4 5 6 7
+do
+  #echo -n "creating /dev/can$i ... " 
+  if [ ! -c /dev/can$i ]; then 
+    mknod /dev/can$i c 121 $i;
+    if [ $? -ne 0 ] ;then 
+      echo "creating /dev/can$i failed"
+      exit 1
+    fi
+    chmod 666 /dev/can$i;
+  fi
+  #echo "ok" 
+done
+exit 0
